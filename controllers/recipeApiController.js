@@ -3,8 +3,14 @@ const User = require('../models/User');
 
 exports.likeRecipe = async (req, res) => {
   try {
-    const { recipeId } = req.body;
+
+    const { idMeal, strMeal, strMealThumb } = req.body;
+
     const userId = req.user.userId;
+
+    if (!idMeal || !strMeal || !strMealThumb) {
+      return res.status(400).json({ message: 'Missing required recipe information' });
+    }
 
     const user = await User.findById(userId);
     if (!user) {
@@ -21,13 +27,17 @@ exports.likeRecipe = async (req, res) => {
       });
     }
 
-    const alreadyLiked = userLike.likedRecipes.some(recipe => recipe.recipeId === recipeId);
+    const alreadyLiked = userLike.likedRecipes.some(recipe => recipe.idMeal === idMeal);
 
     if (alreadyLiked) {
       return res.status(400).json({ message: 'Recipe already liked' });
     }
 
-    userLike.likedRecipes.push({ recipeId });
+    userLike.likedRecipes.push({
+      idMeal,
+      strMeal,
+      strMealThumb
+    });
     await userLike.save();
 
     res.status(201).json({ message: 'Recipe liked successfully' });
@@ -39,7 +49,7 @@ exports.likeRecipe = async (req, res) => {
 
 exports.unlikeRecipe = async (req, res) => {
   try {
-    const { recipeId } = req.params;
+    const { mealId } = req.params;
     const userId = req.user.userId;
 
     const userLike = await UserLike.findOne({ userId });
@@ -49,8 +59,9 @@ exports.unlikeRecipe = async (req, res) => {
     }
 
     userLike.likedRecipes = userLike.likedRecipes.filter(
-      recipe => recipe.recipeId !== recipeId
+      recipe => recipe.idMeal !== mealId
     );
+
 
     await userLike.save();
 
@@ -63,7 +74,7 @@ exports.unlikeRecipe = async (req, res) => {
 
 exports.toggleFavorite = async (req, res) => {
   try {
-    const { recipeId } = req.params;
+    const { mealId } = req.params;
     const userId = req.user.userId;
 
     const userLike = await UserLike.findOne({ userId });
@@ -73,7 +84,7 @@ exports.toggleFavorite = async (req, res) => {
     }
 
     const recipeIndex = userLike.likedRecipes.findIndex(
-      recipe => recipe.recipeId === recipeId
+      recipe => recipe.idMeal === mealId
     );
 
     if (recipeIndex === -1) {

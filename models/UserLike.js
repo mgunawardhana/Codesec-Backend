@@ -11,7 +11,15 @@ const userLike = new mongoose.Schema({
     required: true
   },
   likedRecipes: [{
-    recipeId: {
+    idMeal: {
+      type: String,
+      required: true
+    },
+    strMeal: {
+      type: String,
+      required: true
+    },
+    strMealThumb: {
       type: String,
       required: true
     },

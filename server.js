@@ -5,11 +5,17 @@ const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const recipeLikeRoutes = require('./routes/recipeLikeRoutes');
 const recipeApiRoutes = require('./routes/recipeExrternalAPIRoutes');
-
+const cors = require('cors');
 
 dotenv.config({ path: './.env' });
 
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.json());
 
