@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
     try {
         // eslint-disable-next-line no-undef
-        await mongoose.connect("mongodb+srv://mrgunawardhana27368:Jb4G1jehMHXWPBLI@cluster0.cwae7cc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+        await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true, useUnifiedTopology: true,
         });
         console.info('Connected to DB');

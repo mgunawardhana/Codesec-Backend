@@ -8,8 +8,10 @@ const authMiddleware = (req, res, next) => {
     }
 
     try {
+        // eslint-disable-next-line no-undef
         req.user = jwt.verify(token, process.env.JWT_SECRET);
         next();
+        // eslint-disable-next-line no-unused-vars
     } catch (error) {
         res.status(401).json({ message: 'Token is not valid' });
     }

@@ -5,6 +5,7 @@ exports.getUsers = async (req, res) => {
         const users = await User.find();
         console.info("Fetch all users",users);
         res.json(users);
+        // eslint-disable-next-line no-unused-vars
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
@@ -15,6 +16,7 @@ exports.createUser = async (req, res) => {
         const user = new User(req.body);
         await user.save();
         res.status(201).json(user);
+        // eslint-disable-next-line no-unused-vars
     } catch (error) {
         res.status(400).json({ message: 'Invalid data' });
     }
@@ -25,6 +27,7 @@ exports.getUserById = async (req, res) => {
         const user = await User.findById(req.params.id);
         if (!user) return res.status(404).json({ message: 'User not found' });
         res.json(user);
+        // eslint-disable-next-line no-unused-vars
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
@@ -37,6 +40,7 @@ exports.updateUser = async (req, res) => {
         });
         if (!user) return res.status(404).json({ message: 'User not found' });
         res.json(user);
+        // eslint-disable-next-line no-unused-vars
     } catch (error) {
         res.status(400).json({ message: 'Invalid data' });
     }
@@ -47,6 +51,7 @@ exports.deleteUser = async (req, res) => {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) return res.status(404).json({ message: 'User not found' });
         res.json({ message: 'User deleted' });
+        // eslint-disable-next-line no-unused-vars
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }

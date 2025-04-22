@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
     }, country: {
         type: String, required: true,
     },
-}, {timestamps: true});  // Automatically add createdAt and updatedAt fields
+}, {timestamps: true});
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
