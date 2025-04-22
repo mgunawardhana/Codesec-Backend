@@ -30,8 +30,11 @@ exports.register = async (req, res) => {
         await user.save();
 
         const payload = { userId: user._id };
+
         // eslint-disable-next-line no-undef
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const jwt_sec  = process.env.JWT_SECRET;
+
+        const token = jwt.sign(payload, jwt_sec, { expiresIn: '1h' });
 
         res.status(201).json({ token });
     } catch (error) {
@@ -55,8 +58,11 @@ exports.login = async (req, res) => {
         }
 
         const payload = { userId: user._id };
+
         // eslint-disable-next-line no-undef
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const jwt_sec  = process.env.JWT_SECRET;
+
+        const token = jwt.sign(payload, jwt_sec, { expiresIn: '1h' });
 
         res.json({ token });
     } catch (error) {

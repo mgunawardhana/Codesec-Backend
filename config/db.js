@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
+    
+    // eslint-disable-next-line no-undef
+    const dbURI = process.env.MONGODB_URI;
+    
+    
     try {
-        // eslint-disable-next-line no-undef
-        await mongoose.connect(process.env.MONGO_URI, {
+        await mongoose.connect(dbURI, {
             useNewUrlParser: true, useUnifiedTopology: true,
         });
         console.info('Connected to DB');

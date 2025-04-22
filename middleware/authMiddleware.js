@@ -7,9 +7,11 @@ const authMiddleware = (req, res, next) => {
         return res.status(401).json({ message: 'No token, authorization denied' });
     }
 
+    // eslint-disable-next-line no-undef
+    const jwt_sec  = process.env.JWT_SECRET;
+
     try {
-        // eslint-disable-next-line no-undef
-        req.user = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = jwt.verify(token, jwt_sec);
         next();
         // eslint-disable-next-line no-unused-vars
     } catch (error) {
