@@ -31,10 +31,9 @@ exports.register = async (req, res) => {
 
         const payload = { userId: user._id };
 
-        // eslint-disable-next-line no-undef
-        const jwt_sec  = process.env.JWT_SECRET;
+        // const jwt_sec  = process.env.JWT_SECRET;
 
-        const token = jwt.sign(payload, jwt_sec, { expiresIn: '1h' });
+        const token = jwt.sign(payload, "7b9f2a8d5e4c1f6b3a9d8e7c2f5b4a1d9e8c7f3a2b6d5e4c1f9b8a7d3e2c6f5", { expiresIn: '1h' });
 
         res.status(201).json({ token });
     } catch (error) {
@@ -59,10 +58,9 @@ exports.login = async (req, res) => {
 
         const payload = { userId: user._id };
 
-        // eslint-disable-next-line no-undef
-        const jwt_sec  = process.env.JWT_SECRET;
+        // const jwt_sec  = process.env.JWT_SECRET;
 
-        const token = jwt.sign(payload, jwt_sec, { expiresIn: '1h' });
+        const token = jwt.sign(payload, "7b9f2a8d5e4c1f6b3a9d8e7c2f5b4a1d9e8c7f3a2b6d5e4c1f9b8a7d3e2c6f5", { expiresIn: '48h' });
 
         res.json({ token });
     } catch (error) {
