@@ -1,5 +1,3 @@
-This is the backend API for managing the operations of a cinnamon exports business. Built with **Node.js**, **Express**, and **MongoDB**.
-
 <div align="center">
  <h3>USED TECHNOLOGIES & TOOLS</h3>
      <img src="https://skillicons.dev/icons?i=nodejs,express,mongodb,vscode,postman,git,github,githubactions" />
