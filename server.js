@@ -12,7 +12,7 @@ dotenv.config({ path: './.env' });
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5173','https://recipe-frontend-react.netlify.app/'],
+    origin: ['http://localhost:5173','https://recipe-frontend-react.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
